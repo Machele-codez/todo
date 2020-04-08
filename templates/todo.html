@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Todo App</title>
+<!--
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/546832c0ab.js" crossorigin="anonymous"></script>
+-->
+
+    <link rel="stylesheet" href="{% static 'bs4/css/bootstrap.min.css' %}">
+    <script src="{% static 'bs4/jquery.js' %}"></script>
+    <script src="{% static 'bs4/popper.js' %}"></script>
+    <script src="{% static 'bs4/js/bootstrap.min.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'faw/css/all.min.css' %}">
+    <script src="{% static 'faw/js/all.min.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'todo/todo.css' %}">
+
+</head>
+
+<body>
+    <div class="container mt-4">
+      <div class="row justify-content-center mt-4">
+        <div class="col-sm-8">
+            <p class='display-3' style='text-align:center'>This is my todo app</p>
+            <div class="content">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    {% for error in form.text.errors %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <strong>{{error|title}}</strong> 
+                        </div>
+                        <script>
+                          $(".alert").alert();
+                        </script>
+                    {% endfor %}
+
+                    <div class="ins">
+                        <div class="input-div">
+                            {{form.text}}
+                            <p class="duplicate-error-msg"></p>
+                        </div>
+                        <button data-toggle="tooltip" placement="bottom" title="Add Task" class="btn btn-success" type="submit"><i class="fas fa-plus"></i></button>
+                    </div>
+                
+                </form> 
+                <div class="items mt-4">
+                    {% for task in tasks %}
+                        <p class='item'>
+                            <!--<span class="status"></span>-->
+                            <span class="task-text">{{task}}</span>
+                            <a href='{% url "item_remove" slug=task.slug%}' class='delete btn btn-md'><i class="fas fa-trash-alt"></i></a>
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'todo/todo.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+.content{
+    width: 100%;
+    margin: 0 auto;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+.ins{
+    display: flex;
+    justify-content: space-evenly;
+    /* background: red; */
+}
+
+.input-div{
+    flex-grow: .8;
+}
+
+input{
+    border: none;
+    /* height: 2.5rem; */
+    border-bottom: 3px inset gray;
+    padding-left: .25rem;
+    width: 100%;
+}
+
+button{
+    flex-grow: .1;
+    height: 2.25rem;
+}
+
+.duplicate-error-msg{
+    padding: 0;
+    margin: 0;
+    text-align: end;   
+}
+
+.alright{
+    font-weight: bold;
+    color: green;
+}
+
+.already-present{
+    font-weight: bold;
+    color: red;
+}
+
+.items{
+    width: 100%;
+}
+
+.item{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: .3rem;
+    background: rgb(228, 223, 223);
+    border-radius: 1em;
+}
+
+.status{
+    background-color: black;
+    padding: 1rem;
+    flex-shrink: .1;
+}
+
+/* .task-text{
+    flex-grow: .9;
+} */
+
+.delete{
+    color: black;
+}
