@@ -2,6 +2,7 @@
 const 
 tasks = document.querySelectorAll('.item'),
 duplicateError = document.querySelector('.duplicate-error-msg');
+addTaskButton = document.querySelector('button[type="submit"]');
 
 let presentTasks = [];
 
@@ -11,11 +12,11 @@ tasks.forEach(elem => {
 
 // adding onfocus listener to the input to check if the input is already a present task
 let input = document.querySelector('input[name="text"]');
-const h = document.querySelector('button[type="submit"]').style.height;
+const h = addTaskButton.style.height;
 
 input.onkeyup = () => {
     duplicateError.hidden = false
-    document.querySelector('button[type="submit"]').style.height = h;
+    addTaskButton.style.height = h;
     if (presentTasks.includes(input.value.trim().toLowerCase())) {
         duplicateError.classList.remove('alright');
         duplicateError.classList.add('already-present');
@@ -26,6 +27,7 @@ input.onkeyup = () => {
         duplicateError.innerHTML = 'Can be added';
     }
 }
+
 
 input.onblur = () => {
     duplicateError.hidden = true

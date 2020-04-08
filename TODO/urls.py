@@ -26,7 +26,8 @@ urlpatterns = [
     path('', LoginView.as_view(
         template_name='accounts/login.html', 
         redirect_authenticated_user=True,
-        )
+        ),
+        name = 'login'
     ),
     path('tasks/', include('todo_app.urls', namespace='tasks')),
     path('accounts/', include('accounts.urls', namespace='accounts')),

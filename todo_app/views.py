@@ -15,7 +15,7 @@ class Tasks(LoginRequiredMixin, generic.CreateView):
     template_name = 'todo_app/task_list.html'
     success_url = reverse_lazy('tasks:items')
     form_class = TaskForm
-    
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -23,7 +23,7 @@ class Tasks(LoginRequiredMixin, generic.CreateView):
 
 class Remove(generic.RedirectView):
     def get(self, request, *args, **kwargs):
-        item = get_object_or_404(Task, slug=self.kwargs.get('slug'))
+        item = get_object_or_404(Task, pk=self.kwargs.get('pk'))
         item.delete()
         return super().get(request, *args, **kwargs)
     

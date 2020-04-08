@@ -47,7 +47,7 @@
                         <p class='item'>
                             <!--<span class="status"></span>-->
                             <span class="task-text">{{task}}</span>
-                            <a href='{% url "tasks:item_remove" slug=task.slug%}' class='delete btn btn-md'><i class="fas fa-trash-alt"></i></a>
+                            <a href='{% url "tasks:item_remove" pk=task.pk%}' class='delete btn btn-md'><i class="fas fa-trash-alt"></i></a>
                         </p>
                     {% endfor %}
                 </div>
