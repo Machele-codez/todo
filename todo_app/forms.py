@@ -1,18 +1,17 @@
-from .models import Item
+from .models import Task
 from django import forms
 
-class ItemForm(forms.ModelForm):
+class TaskForm(forms.ModelForm):
     error_css_class = 'error'
     class Meta:
-        model = Item
-        fields = '__all__'
+        model = Task
+        fields = ('text',)
     
     def clean_text(self):
         data = self.cleaned_data["text"]
-        texts = [s.text for s in Item.objects.all()]
+        texts = [s.text for s in Task.objects.all()]
         if data.title() in texts:
             raise forms.ValidationError("already present")
         else:
-            print(texts)
             return data
     

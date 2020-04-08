@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Todo App | {% block title %}{% endblock %}</title>
+<!--
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/546832c0ab.js" crossorigin="anonymous"></script>
+-->
+
+    <link rel="stylesheet" href="{% static 'bs4/css/bootstrap.min.css' %}">
+    <script src="{% static 'bs4/jquery.js' %}"></script>
+    <script src="{% static 'bs4/popper.js' %}"></script>
+    <script src="{% static 'bs4/js/bootstrap.min.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'faw/css/all.min.css' %}">
+    <script src="{% static 'faw/js/all.min.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'master.css' %}">
+    {% block head %}{% endblock %}
+
+</head>
+
+<body>
+    <div class="container mt-4">
+        <a href="{% url 'tasks:items' %}">Items</a>
+        <a href="{% url 'accounts:logout' %}">Logout</a>
+        {% block body %}{% endblock %}
+                
+    </div>
+
+    <script src="{% static 'master.js' %}"></script>
+
+</body>
+
+</html>

@@ -14,12 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, include, re_path
 from todo_app.views import *
+from django.contrib.auth.views import LoginView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Items.as_view(), name = 'items'),
-    re_path(r'^remove/item/(?P<slug>[-\w]+)/$', Remove.as_view(), name='item_remove'),
+    #! To avoid “social media fingerprinting” information leakage, host all images and your favicon on a separate domain.
+    #! due to use of redirect_authenticated_user
+    path('', LoginView.as_view(
+        template_name='accounts/login.html', 
+        redirect_authenticated_user=True,
+        )
+    ),
+    path('tasks/', include('todo_app.urls', namespace='tasks')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
+    
 ]
