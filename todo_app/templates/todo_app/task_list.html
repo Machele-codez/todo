@@ -13,13 +13,7 @@ My Tasks
 {% endblock  %}
 
 {% block body %}
-    
-    {% if user.is_authenticated %}
-        {{user}}
-    {% else %}
-        not authenticated
-    {% endif %}
-        
+            
     <div class="row justify-content-center mt-4">
         <div class="col-sm-8">
             <p class='display-3' style='text-align:center'>This is my todo app</p>
@@ -36,6 +30,7 @@ My Tasks
                     
                     <div class="ins">
                         <div class="field-div">
+                            {% comment %} {{form.errors}} {% endcomment %}
                             <span class='form-fields'>
                                 {{form.text}}
                                 <span class='form-fields-divider'></span>
@@ -53,11 +48,12 @@ My Tasks
                         <p class='task' id=task_{{task.pk}}>
                             <span class="task-priority {{task.priority}}" data-toggle="tooltip" placement="bottom" title="{{task.priority}} priority"></span>
                             <span class="task-text">{{task.text}}</span>
+                            <span class="task-comp">{{task.completed}}</span>
                             <span class='task-options'>
-                                <a href='#' class='complete btn btn-md' data-toggle="tooltip" placement="bottom" title="Mark as completed">
+                                <a href="{% url 'tasks:task_complete' pk=task.pk %}" class='complete btn btn-md' data-toggle="tooltip" placement="bottom" title="Mark as completed">
                                     <i class="fas fa-lg fa-check"></i>
                                 </a>
-                                <a href='{% url "tasks:item_remove" pk=task.pk%}' class='delete btn btn-md' data-toggle="tooltip" placement="bottom" title="Delete Task">
+                                <a href='{% url "tasks:task_remove" pk=task.pk%}' class='delete btn btn-md' data-toggle="tooltip" placement="bottom" title="Delete Task">
                                     <i class="fas fa-lg fa-trash-alt"></i>
                                 </a>
                             </span>

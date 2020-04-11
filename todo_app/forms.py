@@ -1,7 +1,6 @@
 from .models import Task
 from django import forms
 from django.http import request
-from django.contrib.auth import get_user
 
 class TaskForm(forms.ModelForm):
     class Meta:

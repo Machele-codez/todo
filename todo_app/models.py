@@ -6,25 +6,27 @@ import datetime
 
 User = get_user_model()
 
-PRIORITY_CHOICES = [
-    ('critical', 'critical'),
-    ('high', 'high'),
-    ('moderate', 'moderate'),
-    ('low', 'low'),
-]
 
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
     text = models.CharField(max_length=30)
-    # slug = models.SlugField(allow_unicode=True, editable=False)
     date_created = models.DateTimeField(auto_now=True)
+    completed = models.BooleanField(default=False)
+    completed_on = models.DateTimeField(blank=True, null=True)
+    CRITICAL = 'A'; HIGH = 'B'; MODERATE = 'C'; LOW = 'D'
+    PRIORITY_CHOICES = [
+    ('A', 'critical'),
+    ('B', 'high'),
+    ('C', 'moderate'),
+    ('D', 'low'),
+    ]
     priority = models.CharField(max_length=15, choices=PRIORITY_CHOICES)
-    completed = models.BooleanField()
-    completed_on = models.DateTimeField()
 
-    def complete(self):
-        self.completed = True
-        self.date_completed = datetime.datetime.now()
+
+    #// def complete(self):
+    #//    self.completed = True
+    #//     self.completed_on = datetime.datetime.now()
+    #//     self.save()
 
     def __str__(self):
         return f"{self.text} | {self.user}".title()
@@ -33,7 +35,6 @@ class Task(models.Model):
         self.delete()
         
     def save(self):
-        # self.slug = slugify(self.text)
         self.text = self.text.title()
         return super().save()
 

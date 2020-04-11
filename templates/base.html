@@ -25,12 +25,22 @@
 </head>
 
 <body>
+    <nav id="main-nav">
+        <div id='nav-contents'>
+            <div class='nav-pages'>
+                <a href="{% url 'tasks:items' %}">Items</a>
+                <a href="{% url 'tasks:completed' %}">Completed</a>
+            </div>
+            <div class='nav-user-actions'>
+                {% if user.is_authenticated %}
+                {{user}}
+                <a href="{% url 'accounts:logout' %}">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
     <div class="container mt-4">
-        <a href="{% url 'tasks:items' %}">Items</a>
-        {% if user.is_authenticated %}
-        <a href="{% url 'accounts:logout' %}">Logout</a>
-        {% else %}
-        {% endif %}
             
         {% block body %}{% endblock %}
                 

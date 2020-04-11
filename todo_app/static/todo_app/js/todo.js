@@ -49,17 +49,17 @@ input.onblur = () => {
 }
 
 //? add the event handler to add the colour based on task priority 
-document.querySelectorAll('.critical').forEach(elem => {
+document.querySelectorAll('.A').forEach(elem => {
     elem.style.backgroundColor = 'red'
 });
-document.querySelectorAll('.high').forEach(elem => {
+document.querySelectorAll('.B').forEach(elem => {
     elem.style.backgroundColor = 'orange'
 });
-document.querySelectorAll('.moderate').forEach(elem => {
-    elem.style.backgroundColor = 'blue'
+document.querySelectorAll('.C').forEach(elem => {
+    elem.style.backgroundColor = '#ffef00'
 });
-document.querySelectorAll('.low').forEach(elem => {
-    elem.style.backgroundColor = 'inherit'
+document.querySelectorAll('.D').forEach(elem => {
+    elem.style.backgroundColor = 'gray'
 });
 
 

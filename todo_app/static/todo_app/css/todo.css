@@ -81,7 +81,7 @@ button{
 }
 
 .task-priority{
-    /* background: green; */
+    /* background: black !important; */
     height: 2.5rem;
     border-radius: 1rem 0;
 }
