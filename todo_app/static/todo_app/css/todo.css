@@ -16,16 +16,34 @@ form{
     /* background: red; */
 }
 
-.input-div{
+.field-div{
     flex-grow: .8;
+}
+
+.form-fields{
+    display:flex;
+    justify-content: space-between;
 }
 
 input{
     border: none;
-    /* height: 2.5rem; */
     border-bottom: 3px inset gray;
     padding-left: .25rem;
-    width: 100%;
+    flex-grow: .8;
+}
+
+select{
+    border: none;
+    border-bottom: 3px inset gray;
+    padding-left: .25rem;
+    flex-grow: .15;
+}
+
+
+.form-fields-divider{
+    display: inline-block;
+    width: .5rem;
+    /* background-color: black; */
 }
 
 button{
@@ -49,31 +67,45 @@ button{
     color: red;
 }
 
-.items{
+.tasks{
     width: 100%;
 }
 
-.item{
+.task{
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: .3rem;
+    display: grid;
     background: rgb(228, 223, 223);
+    grid-template-columns: repeat(14, 1fr);
+    align-items: center;
     border-radius: 1em;
 }
 
-.status{
-    background-color: black;
-    padding: 1rem;
-    flex-shrink: .1;
+.task-priority{
+    /* background: green; */
+    height: 2.5rem;
+    border-radius: 1rem 0;
 }
 
-/* .task-text{
-    flex-grow: .9;
-} */
+.task-text{
+    margin-left: 1rem;
+    grid-column: 2/11;
+}
 
-.delete{
-    color: black;
+.task-options{
+    height: 2.5rem;
+    background-color: rgb(194, 192, 192);
+    border-radius: 0 1rem 1rem 0;
+    grid-column: 13/15;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: center;
+}
+
+.complete:hover{
+    color: green;
+}
+
+.delete:hover{
+    color: rgb(190, 0, 0);
 }

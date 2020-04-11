@@ -6,7 +6,7 @@ from django.contrib.auth import get_user
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('text',)
+        fields = ('text', 'priority')
     
     # def clean_text(self):
     #     data = self.cleaned_data["text"]

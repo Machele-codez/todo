@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+{% block title %}
+My Tasks
+{% endblock %}
+    
+
 {% block head %}
     <link rel="stylesheet" href="{% static 'todo_app/css/todo.css' %}">    
     <script src="{% static 'todo_app/js/todo.js' %}" defer></script>
@@ -20,33 +26,45 @@
             <div class="content">
                 <form method="post">
                     {% csrf_token %}
+                    <!--ALERT-->
+                    <div id='duplicate-alert' class="alert alert-warning alert-dismissible fade show" hidden>
+                        <button type="button" class="close">
+                        <span id='duplicate-alert-dismiss'>&times;</span>
+                        </button>
+                        <strong>Task Already Present</strong> 
+                    </div>
                     
-                        <div class="alert alert-warning alert-dismissible fade show" id='duplicate-alert' hidden role="alert">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <strong>Task Already Present</strong> 
-                        </div>
-                        <script>
-                          $(".alert").alert();
-                        </script>
-
                     <div class="ins">
-                        <div class="input-div">
-                            {{form.text}}
+                        <div class="field-div">
+                            <span class='form-fields'>
+                                {{form.text}}
+                                <span class='form-fields-divider'></span>
+                                {{form.priority}}
+                                <span class='form-fields-divider'></span>
+                            </span>
                             <p class="duplicate-error-msg"></p>
                         </div>
                         <button data-toggle="tooltip" placement="bottom" title="Add Task" class="btn btn-success" type="submit"><i class="fas fa-plus"></i></button>
                     </div>
                 
                 </form> 
-                <div class="items mt-4">
+                <div class="tasks mt-4">
                     {% for task in user.tasks.all %}
-                        <p class='item'>
-                            <!--<span class="status"></span>-->
-                            <span class="task-text">{{task}}</span>
-                            <a href='{% url "tasks:item_remove" pk=task.pk%}' class='delete btn btn-md'><i class="fas fa-trash-alt"></i></a>
+                        <p class='task' id=task_{{task.pk}}>
+                            <span class="task-priority {{task.priority}}" data-toggle="tooltip" placement="bottom" title="{{task.priority}} priority"></span>
+                            <span class="task-text">{{task.text}}</span>
+                            <span class='task-options'>
+                                <a href='#' class='complete btn btn-md' data-toggle="tooltip" placement="bottom" title="Mark as completed">
+                                    <i class="fas fa-lg fa-check"></i>
+                                </a>
+                                <a href='{% url "tasks:item_remove" pk=task.pk%}' class='delete btn btn-md' data-toggle="tooltip" placement="bottom" title="Delete Task">
+                                    <i class="fas fa-lg fa-trash-alt"></i>
+                                </a>
+                            </span>
                         </p>
+                    {%empty%}
+                    <p class='display-4' style='text-align: center; color: grey'>No tasks yet</p>
+                    <p class='display-5' style='text-align: center; color: grey'>You can add tasks above</p>
                     {% endfor %}
                 </div>
             </div>
