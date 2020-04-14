@@ -47,6 +47,10 @@
     padding: .2rem;
 }
 
+.form input:focus{
+    border: 3px solid gray;
+}
+
 .sub{
     border: none;
     background: none;
@@ -80,14 +84,28 @@ ul{
 }
 
 .help-text{
-    /* display: none; */
+    display: none;
     position: absolute;
-    right: 100%;
-    /* bottom: 0%; */
+    right: 110%;
+    top: -50%;
     box-shadow: rgb(231, 229, 229) 0.05rem 0.05rem 0.1rem 0.1rem;
-    padding: .5rem;
-    background-color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: #f9f8f8;
     width: 20rem;
+    z-index: 1;
+}
+
+.help-text::before{
+    /* display: none; */
+    content: '';
+    background-color: #f9f8f8;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    right: -.5rem;
+    top: 1.5rem;
+    transform: rotate(45deg);
 }
 
 .help-text span{
