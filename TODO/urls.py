@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from todo_app.views import *
 from django.contrib.auth.views import LoginView
-
+from accounts.forms import LoginForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +26,7 @@ urlpatterns = [
     path('', LoginView.as_view(
         template_name='accounts/login.html', 
         redirect_authenticated_user=True,
+        authentication_form = LoginForm
         ),
         name = 'login'
     ),

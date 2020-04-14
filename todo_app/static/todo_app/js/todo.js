@@ -14,7 +14,7 @@ taskTexts.forEach(elem => {
 let input = document.querySelector('input[name="text"]');
 const h = addTaskButton.style.height;
 
-input.onkeyup = () => {
+input.addEventListener('keyup', () => {
     duplicateError.hidden = false
     addTaskButton.style.height = h; //? maintain add task button's height when error message is added below input
 
@@ -27,7 +27,7 @@ input.onkeyup = () => {
         duplicateError.classList.add('alright');
         duplicateError.innerHTML = 'Can be added';
     }
-}
+});
 
 //| Display duplicate alert upon attempt to submit
 addTaskButton.addEventListener('click', e => {
@@ -44,11 +44,11 @@ document.getElementById('duplicate-alert-dismiss').addEventListener('click', () 
 
 
 //| clear duplicate error message when input is not active
-input.onblur = () => {
+input.addEventListener('blur', () => {
     duplicateError.hidden = true
-}
+});
 
-//? add the event handler to add the colour based on task priority 
+//| left edge colour based on task priority 
 document.querySelectorAll('.A').forEach(elem => {
     elem.style.backgroundColor = 'red'
 });

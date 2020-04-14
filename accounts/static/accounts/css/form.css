@@ -1,0 +1,95 @@
+.left-container, .right-container{
+    height: 100%;
+    margin-top: 3rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.login-text{
+    font-size: 2.5rem;
+}
+
+.signup-text{
+    font-size: 1.8rem;
+}
+
+.get-started{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup{
+    width: max-content;
+    box-shadow: rgb(231, 229, 229) .05rem .05rem .1rem .2rem;
+}
+
+.form-container{
+    border-radius: 1rem 1rem 1rem 0;
+    height: 22.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgb(231, 229, 229) .05rem .05rem .1rem .2rem;
+}
+
+.form{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.form input{
+    padding: .2rem;
+}
+
+.sub{
+    border: none;
+    background: none;
+}
+
+input{
+    border-radius: .6rem;
+    border-color: #e8e6e6;
+    border-width: 3px;
+    border-top-style: outset;
+    border-right-style: inset;
+    border-bottom-style: inset;
+    border-left-style: outset;
+    text-align: center;
+}
+
+input::placeholder{
+    color: gray;
+}
+
+ul{
+    display: none;
+}
+
+.field-div{
+    position: relative;
+}
+
+.field-div:hover .help-text{
+    display: block;
+}
+
+.help-text{
+    /* display: none; */
+    position: absolute;
+    right: 100%;
+    /* bottom: 0%; */
+    box-shadow: rgb(231, 229, 229) 0.05rem 0.05rem 0.1rem 0.1rem;
+    padding: .5rem;
+    background-color: white;
+    width: 20rem;
+}
+
+.help-text span{
+    display: block;
+}

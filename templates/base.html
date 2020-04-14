@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/546832c0ab.js" crossorigin="anonymous"></script>
 -->
+    <script>
+        document.onload = () => {
+            document.innerHTML = 'LOADING'
+        }
+    </script>
 
     <link rel="stylesheet" href="{% static 'bs4/css/bootstrap.min.css' %}">
     <script src="{% static 'bs4/jquery.js' %}"></script>
@@ -19,6 +24,7 @@
     <link rel="stylesheet" href="{% static 'faw/css/all.min.css' %}">
     <script src="{% static 'faw/js/all.min.js' %}"></script>
 
+
     <link rel="stylesheet" href="{% static 'master.css' %}">
     {% block head %}{% endblock %}
 
@@ -26,21 +32,28 @@
 
 <body>
     <nav id="main-nav">
-        <div id='nav-contents'>
+        <div>
+            <span class="site-brand">TODO</span>
+        </div>
+        
+        {% if user.is_authenticated %}
+        <div class="nav-contents">
             <div class='nav-pages'>
-                <a href="{% url 'tasks:items' %}">Items</a>
-                <a href="{% url 'tasks:completed' %}">Completed</a>
+                <a href="{% url 'tasks:items' %}" class='nav-button'>Tasks</a>
+                <a href="{% url 'tasks:completed' %}" class='nav-button'>Completed</a>
+                <a href="#" class='nav-button'>Progress</a>
             </div>
-            <div class='nav-user-actions'>
-                {% if user.is_authenticated %}
-                {{user}}
-                <a href="{% url 'accounts:logout' %}">Logout</a>
-                {% endif %}
+            <div class="nav-user-actions">
+                <span class='user'>@{{user}}</span>
+                <a href="{% url 'accounts:logout' %}" class='nav-button'>Logout</a>
             </div>
         </div>
+        {% endif %}
+            
     </nav>
 
-    <div class="container mt-4">
+
+    <div id='main-wrapper' class="container">
             
         {% block body %}{% endblock %}
                 
