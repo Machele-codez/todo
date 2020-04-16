@@ -16,6 +16,7 @@
     flex-basis: content;
     flex-grow: 1;
 }
+
 .nav-pages{
     display: inline-flex;
     justify-content: space-around;
@@ -36,7 +37,7 @@
 }
 
 .nav-button:hover{
-
+    
 }
 
 .user{
@@ -46,4 +47,3 @@
 a:hover{
     color: unset;
     text-decoration: none;
-}

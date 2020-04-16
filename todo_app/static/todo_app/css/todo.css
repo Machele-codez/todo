@@ -28,6 +28,10 @@ form{
     justify-content: space-between;
 }
 
+.alert{
+    background-color: #f7b570;
+}
+
 input{
     border: none;
     border-bottom: 3px inset gray;

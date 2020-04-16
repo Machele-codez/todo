@@ -1,3 +1,7 @@
+.col-sm-7, .col-sm-4, .col-sm-1{
+    margin: auto;
+}
+
 .left-container, .right-container{
     height: 100%;
     margin-top: 3rem;
@@ -34,6 +38,9 @@
     flex-direction: column;
     align-items: center;
     box-shadow: rgb(231, 229, 229) .05rem .05rem .1rem .2rem;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: .5rem;
 }
 
 .form{
@@ -41,10 +48,25 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
+    width: inherit;
 }
+
+.login-error{
+    background-color: #f7b570;
+    border-radius: .25rem;
+    padding: .5rem;
+}
+
+.field-div{
+    position: relative;
+    width: inherit;
+}
+
 
 .form input{
     padding: .2rem;
+    width: 100%;
 }
 
 .form input:focus{
@@ -53,7 +75,7 @@
 
 .sub{
     border: none;
-    background: none;
+    width: max-content;
 }
 
 input{
@@ -71,27 +93,30 @@ input::placeholder{
     color: gray;
 }
 
+/* input[type="email"]:focus:invalid{
+    border-color: red
+} */
+
+/* 
+errorlist nuisance for password fields
 ul{
     display: none;
-}
+} */
 
-.field-div{
-    position: relative;
-}
 
-.field-div:hover .help-text{
+/* .field-div:hover .help-text{
     display: block;
-}
+} */
 
 .help-text{
     display: none;
     position: absolute;
-    right: 110%;
+    right: 105%;
     top: -50%;
     box-shadow: rgb(231, 229, 229) 0.05rem 0.05rem 0.1rem 0.1rem;
     border-radius: 1rem;
     padding: 1rem;
-    background-color: #f9f8f8;
+    background-color: #e3dede;
     width: 20rem;
     z-index: 1;
 }
@@ -99,7 +124,7 @@ ul{
 .help-text::before{
     /* display: none; */
     content: '';
-    background-color: #f9f8f8;
+    background-color: #e3dede;
     width: 2rem;
     height: 2rem;
     position: absolute;
@@ -110,4 +135,52 @@ ul{
 
 .help-text span{
     display: block;
+}
+
+.field-errors{
+    /* display: none; */
+    position: absolute;
+    right: 100%;
+    /* top: -50%; */
+    /* box-shadow: rgb(243, 80, 80) 0.05rem 0.05rem 0.1rem 0.1rem; */
+    box-shadow: #f0f0f0 0.05rem 0.05rem 0.1rem 0.1rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    padding-left: 0%;
+    /* background-color: coral; */
+    background-color: gray;
+    width: 20rem;
+    text-align: left;
+    cursor: default;
+}
+
+/* .field-errors::before{
+    content: '';
+    background-color: gray;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    right: -.5rem;
+    top: 1.5rem;
+    transform: rotate(45deg);
+} */
+
+/* field names in error message block */
+.errorlist li{
+    list-style: none;
+    text-transform: capitalize;
+    /* font-size: large; */
+    margin: .25rem 0;
+    font-weight: 700;
+}
+
+/* field error messages */
+.errorlist>li>:first-child{
+    text-transform: none;
+    font-size: initial;
+    font-size: 1rem;
+    color: #e8e6e6;
+    font-weight: initial;
+    font-style: italic;
+    
 }
