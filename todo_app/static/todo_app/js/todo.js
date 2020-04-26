@@ -62,6 +62,11 @@ document.querySelectorAll('.D').forEach(elem => {
     elem.style.backgroundColor = 'gray'
 });
 
+//| placeholder for `set priority`
+document.querySelector('option[selected]').innerHTML = 'set priority';
 
-
-
+//| form errors
+const fieldErrorDismiss = document.querySelector('.field-errors-close');
+fieldErrorDismiss.addEventListener('click', () => {
+    document.querySelector('.field-errors').style.display = 'none';
+})

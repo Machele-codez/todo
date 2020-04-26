@@ -4,7 +4,7 @@ from .models import Task
 from django.shortcuts import get_object_or_404
 from .forms import TaskForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-import datetime
+import datetime, pytz
 
 # Create your views here.
 
@@ -16,7 +16,17 @@ class Tasks(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        print('done')
+        due_date = self.request.POST.get('due_date')
+        due_time = self.request.POST.get('due_time')
+        due_date = datetime.datetime.strptime(due_date, '%Y-%m-%d') #?convert due_date into datetime object 
+        due_time = datetime.datetime.strptime(due_time, '%H:%M').time()#?convert due_time into datetime object
+        due_datetime = due_date + datetime.timedelta(hours=due_time.hour, minutes=due_time.minute)
+        # print("DUE DATE:", due_date)
+        # print("DUE TIME:", due_time)
+        # print("DUE DATE TIME",due_datetime)
+        form.instance.due_datetime = pytz.utc.localize(due_datetime) 
+        print("USING PYTZ", form.instance.due_datetime)
+        print("USING DATETIME",due_datetime.replace(tzinfo=datetime.timezone.utc).isoformat())
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -51,6 +61,7 @@ class CompletedTasks(LoginRequiredMixin, generic.ListView):
     model = Task
     context_object_name = 'tasks'
     template_name = 'todo_app/completed_tasks.html'
+    
     def get_queryset(self):
-        queryset = Task.objects.filter(completed=True, user=self.request.user)
+        queryset = Task.objects.filter(completed=True, user=self.request.user).order_by('-completed_on')
         return queryset

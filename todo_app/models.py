@@ -13,7 +13,7 @@ class Task(models.Model):
     date_created = models.DateTimeField(auto_now=True)
     completed = models.BooleanField(default=False)
     completed_on = models.DateTimeField(blank=True, null=True)
-    CRITICAL = 'A'; HIGH = 'B'; MODERATE = 'C'; LOW = 'D'
+    # CRITICAL = 'A'; HIGH = 'B'; MODERATE = 'C'; LOW = 'D'
     PRIORITY_CHOICES = [
     ('A', 'critical'),
     ('B', 'high'),
@@ -21,6 +21,9 @@ class Task(models.Model):
     ('D', 'low'),
     ]
     priority = models.CharField(max_length=15, choices=PRIORITY_CHOICES)
+    # get a field that would be the appended value of the input date and input time to be the final due_datetime
+    due_datetime = models.DateTimeField(blank=True, null=True)
+    
 
 
     #// def complete(self):
@@ -36,6 +39,7 @@ class Task(models.Model):
         
     def save(self):
         self.text = self.text.title()
+        # self.due_datetime = self.due_date + self.due_time
         return super().save()
 
     class Meta:

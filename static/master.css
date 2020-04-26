@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     text-align: center;    
+    box-shadow: rgb(209, 207, 207) 0 0 .5rem;
 }
 
 .site-brand{

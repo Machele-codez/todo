@@ -14,4 +14,3 @@ class SignupView(CreateView):
         logout(self.request)
         return super().form_valid(form)
 
-
