@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth import get_user_model
 import datetime
+from django import forms
+
 # Create your models here.
 
 User = get_user_model()
@@ -39,11 +41,12 @@ class Task(models.Model):
         
     def save(self):
         self.text = self.text.title()
-        # self.due_datetime = self.due_date + self.due_time
         return super().save()
 
     class Meta:
         ordering = ['-date_created']
+        
+        #TODO: to make sure that each task and user taken together is unique
         constraints = [
             models.UniqueConstraint(fields=['user', 'text'], name='unique_user_task'),
         ]

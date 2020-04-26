@@ -12,18 +12,19 @@ class TaskForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # self.fields['due_datetime'].widget.attrs['placeholder'] = 'dd/mm/yy hrs:mins'
-        # print(self.fields['due_datetime'].initial)
+        self.fields['due_date'].widget.attrs['placeholder'] = 'due date'
+        self.fields['due_time'].widget.attrs['placeholder'] = 'due time'
 
-    def clean_due_datetime(self):
-        input_due_datetime = self.cleaned_data['due_datetime']
-        print("initial_due_datetime:".upper(),self.fields['due_datetime'].initial)
-        print("input_due_datetime:".upper(),input_due_datetime)
-        print(self.fields['due_datetime'].initial == input_due_datetime)
-        if self.fields['due_datetime'].initial == input_due_datetime:
+    def clean(self):
+        due_date = self.cleaned_data['due_date']
+        due_time = self.cleaned_data['due_time']
+        due_datetime = datetime.datetime(year=due_date.year, month=due_date.month, day=due_date.day) + datetime.timedelta(hours=due_time.hour, minutes=due_time.minute) #? add both date and time
+        due_datetime = due_datetime.replace(tzinfo=datetime.timezone.utc)
+        #? if due datetime is before current date then raise an error
+        if due_datetime < datetime.datetime.today().replace(tzinfo=datetime.timezone.utc):
             raise forms.ValidationError(
-                'please input a date',
-                'no_date_input'
-            )
-
-        return input_due_datetime
+            'due date and time cannot occur before current date',
+            'backdating'
+        )
+        # print(type(due_date), type(due_time), type(due_datetime))
+        return due_datetime
