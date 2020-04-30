@@ -11,7 +11,7 @@ User = get_user_model()
 
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
-    text = models.CharField(max_length=30)
+    text = models.CharField(max_length=200)
     date_created = models.DateTimeField(auto_now=True)
     completed = models.BooleanField(default=False)
     completed_on = models.DateTimeField(blank=True, null=True)

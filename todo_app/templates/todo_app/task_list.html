@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load humanize %}
 
 {% block title %}
 My Tasks
@@ -20,12 +20,18 @@ My Tasks
             <div class="content">
                 <form method="post">
                     {% csrf_token %}
-                    <!--ALERT-->
+                    <!--ALERTS-->
                     <div id='duplicate-alert' class="alert alert-warning alert-dismissible fade show" hidden>
                         <button type="button" class="close">
                         <span id='duplicate-alert-dismiss'>&times;</span>
                         </button>
                         <strong>Task Already Present</strong> 
+                    </div>
+                    <div id='duedatetime-alert' class="alert alert-warning alert-dismissible fade show" hidden>
+                        <button type="button" class="close">
+                        <span id='duedatetime-alert-dismiss'>&times;</span>
+                        </button>
+                        <strong>Due date and time cannot occur before current date and time</strong> 
                     </div>
                     {% if form.errors %}
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -46,13 +52,15 @@ My Tasks
                         <!--input fields-->
                         <div class="field-div">
                             <span class='form-fields'>
-                                {{form.text}}
+                                <span class="task-text-input-span">{{form.text}}</span>
                                 <span class='form-fields-divider'></span>
-                                {{form.priority}}
+                                <span>{{form.priority}}</span>
                                 <span class='form-fields-divider'></span>
-                                {{form.due_date}}
+                                {% comment %} {{form.due_date.label_tag}} {% endcomment %}
+                                <span>{{form.due_date}}</span>
                                 <span class='form-fields-divider'></span>
-                                {{form.due_time}}
+                                {% comment %} {{form.due_time.label_tag}} {% endcomment %}
+                                <span>{{form.due_time}}</span>
                                 <span class='form-fields-divider'></span>
                             </span>
                             <p class="duplicate-error-msg"></p>
@@ -80,8 +88,14 @@ My Tasks
                             </p>
                             <hr class="my-0">
                             <span class="task-time">
-                                <span title="time added"><b><em>Added:</em></b> {{task.date_created|timesince}} ago</span>
-                                {% if task.due_datetime %}<span title="due in {{task.due_datetime|timeuntil}}"><b><em>Due:</em></b> In {{task.due_datetime|timeuntil}}</span>{% endif %}
+                                <span class="time-added" title="time added"><b><em>Added: </em></b>{{task.date_created|naturaltime}}</span>
+                                {% if task.due_datetime %}
+                                    {% if task.due_datetime > current_time %}
+                                    <span class="not-due" title="{{task.due_datetime}}"><b><em>Due: </em></b>{{task.due_datetime|naturaltime}}</span>
+                                    {% else %}
+                                    <span class="due" title="{{task.due_datetime}}"><b><em>Due: </em></b>{{task.due_datetime|naturaltime}}</span>
+                                    {% endif %}
+                                {% endif %}
                             </span>
                         {% endif %}
                     {%empty%}
@@ -111,4 +125,3 @@ My Tasks
         -->
     </div>
 {% endblock %}
-    

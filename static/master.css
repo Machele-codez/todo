@@ -4,6 +4,11 @@
     align-items: center;
     text-align: center;    
     box-shadow: rgb(209, 207, 207) 0 0 .5rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: white;
 }
 
 .site-brand{

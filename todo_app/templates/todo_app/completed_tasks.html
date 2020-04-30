@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load humanize %}
 
 {% block title %}
 Completed Tasks
@@ -33,7 +33,7 @@ Completed Tasks
                                 </span>
                         </p>
                         <hr class="my-1">
-                        <span class="duration"><b><em>Completed:</em></b> {{task.completed_on|timesince}} ago</span>
+                        <span class="duration"><b><em>Completed:</em></b> {{task.completed_on|naturaltime}}</span>
                     {%empty%}
                     <p class='display-4' style='text-align: center; color: grey'>No Completed tasks yet</p>
                     {% endfor %}

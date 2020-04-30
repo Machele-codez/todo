@@ -26,6 +26,15 @@ form{
 .form-fields{
     display:flex;
     justify-content: space-between;
+    align-items: flex-end;
+}
+
+.form-fields .task-text-input-span{
+    flex-grow: .8;
+}
+
+.form-fields span{
+    z-index: 1;
 }
 
 .alert{
@@ -47,6 +56,8 @@ input{
     border-bottom: 3px inset gray;
     padding-left: .25rem;
     flex-grow: .8;
+    width: 100%;
+    z-index: 0;
 }
 
 select{
@@ -56,6 +67,9 @@ select{
     flex-grow: .15;
 }
 
+input[type="time"], input[type="date"] {
+    flex-grow: 0;
+}
 
 .form-fields-divider{
     display: inline-block;
@@ -120,6 +134,29 @@ button{
     justify-content: space-between;
     /* text-align: end; */
     font-size: .8rem;
+}
+
+.task-time .time-added{
+    color: gray;
+}
+
+.task-time .due{
+    color: red;
+    /* background: red;
+    color: white;
+    padding: .1rem .3rem;
+    border-radius: .5rem;
+    margin-top: .1rem; */
+
+}
+
+.task-time .not-due{
+    color: green;
+    /* background: green;
+    color: white;
+    padding: .1rem .3rem;
+    border-radius: .5rem;
+    margin-top: .1rem; */
 }
 
 .task-options{

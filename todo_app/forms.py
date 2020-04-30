@@ -14,6 +14,7 @@ class TaskForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['due_date'].widget.attrs['placeholder'] = 'due date'
         self.fields['due_time'].widget.attrs['placeholder'] = 'due time'
+        self.fields['text'].widget.attrs['placeholder'] = 'Add Task Here'
 
     def clean(self):
         due_date = self.cleaned_data['due_date']
@@ -27,4 +28,3 @@ class TaskForm(forms.ModelForm):
             'backdating'
         )
         # print(type(due_date), type(due_time), type(due_datetime))
-        return due_datetime

@@ -22,18 +22,19 @@ class Tasks(LoginRequiredMixin, generic.CreateView):
         due_date = datetime.datetime.strptime(due_date, '%Y-%m-%d') #?convert due_date into datetime.datetime object 
         due_time = datetime.datetime.strptime(due_time, '%H:%M').time() #?convert due_time into datetime.time object
         due_datetime = due_date + datetime.timedelta(hours=due_time.hour, minutes=due_time.minute) #? add both date and time
-        # print("DUE DATE:", due_date)
-        # print("DUE TIME:", due_time)
-        # print("DUE DATE TIME",due_datetime)
+        #// form.instance.due_datetime = pytz.utc.localize(due_datetime) #?making the due_datetime "timezone aware" 
         form.instance.due_datetime = due_datetime.replace(tzinfo=datetime.timezone.utc) #?making the due_datetime "timezone aware" 
-        # print("USING PYTZ", form.instance.due_datetime)
-        # print("USING DATETIME",pytz.utc.localize(due_datetime).isoformat())
         # TODO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         return super().form_valid(form)
 
     def form_invalid(self, form):
         print("INVALID")
         return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_time'] = datetime.datetime.now().replace(tzinfo=datetime.timezone.utc)
+        return context
 
 #TODO: handles task removal(deletes them from database)
 class Remove(generic.RedirectView):

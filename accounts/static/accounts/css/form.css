@@ -66,6 +66,10 @@
 
 .form input{
     padding: .2rem;
+    width: 70%;
+}
+
+.form[name="login-form"] input{
     width: 100%;
 }
 
