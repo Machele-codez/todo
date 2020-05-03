@@ -33,10 +33,6 @@ form{
     flex-grow: .8;
 }
 
-.form-fields span{
-    z-index: 1;
-}
-
 .alert{
     background-color: #f7b570;
 }
@@ -179,7 +175,7 @@ button{
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
-    
+    padding: 0;
 }
 
 .complete:hover{

@@ -4,11 +4,12 @@
     align-items: center;
     text-align: center;    
     box-shadow: rgb(209, 207, 207) 0 0 .5rem;
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     z-index: 1;
     background-color: white;
+    margin-bottom: 1rem;
 }
 
 .site-brand{
@@ -53,3 +54,4 @@
 a:hover{
     color: unset;
     text-decoration: none;
+}

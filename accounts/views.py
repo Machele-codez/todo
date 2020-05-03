@@ -11,6 +11,11 @@ class SignupView(CreateView):
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        logout(self.request)
+        logout(self.request) #? to logout the logged in user if a new user is to signup
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_name'] = "Signup"
+        return context
 

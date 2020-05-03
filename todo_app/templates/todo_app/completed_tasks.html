@@ -15,22 +15,22 @@ Completed Tasks
         
     <div class="row justify-content-center mt-4">
         <div class="col-sm-8">
-            <!--<p class='display-3' style='text-align:center'>Completed Tasks</p>-->
+            <p class='display-4' style='text-align:center'>Completed Tasks</p>
             <div class="content">
                 <div class="tasks mt-4">
                     {% for task in tasks %}
                         <p class='task completed mb-0 mt-3' id=task_{{task.pk}}>
                             <span class="task-text">{{task.text}}</span>
-                                <span class='task-options'>
-                                    <!--
-                                    <a href='#' class='complete btn btn-md' data-toggle="tooltip" placement="bottom" title="Mark as completed">
-                                        <i class="fas fa-lg fa-check"></i>
-                                    </a>
-                                    -->
-                                    <a href='{% url "tasks:task_remove" pk=task.pk%}' class='delete btn btn-md' data-toggle="tooltip" placement="bottom" title="Delete Task">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                </span>
+                            <span class='task-options'>
+                                <!--
+                                <a href='#' class='complete btn btn-md' data-toggle="tooltip" placement="bottom" title="Mark as completed">
+                                    <i class="fas fa-lg fa-check"></i>
+                                </a>
+                                -->
+                                <a href='{% url "tasks:task_remove" pk=task.pk%}' class='delete btn btn-md' data-toggle="tooltip" placement="bottom" title="Delete Task">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </span>
                         </p>
                         <hr class="my-1">
                         <span class="duration"><b><em>Completed:</em></b> {{task.completed_on|naturaltime}}</span>

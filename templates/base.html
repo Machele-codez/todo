@@ -28,16 +28,17 @@
 
 <body>
     <nav id="main-nav">
-        <div>
+        <div class="d-flex flex-column" style="text-align: start;">
             <span class="site-brand">TODO</span>
+            <span style="padding-left: .2rem;" >{{page_name}}</span>
         </div>
         
         {% if user.is_authenticated %}
         <div class="nav-contents">
             <div class='nav-pages'>
-                <a href="{% url 'tasks:items' %}" class='nav-button'>Tasks</a>
+                <a href="{% url 'tasks:items' %}" class='nav-button'>My Tasks</a>
                 <a href="{% url 'tasks:completed' %}" class='nav-button'>Completed</a>
-                <a href="#" class='nav-button'>Progress</a>
+                {% comment %} <a href="#" class='nav-button'>Progress</a> {% endcomment %}
             </div>
             <div class="nav-user-actions">
                 <span class='user'>@{{user}}</span>

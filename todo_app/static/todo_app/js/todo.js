@@ -63,28 +63,30 @@ input.addEventListener('blur', () => {
 
 
 // TODO handling task due datetime errors
+
+
 const
 dateInput = document.getElementById('id_due_date'),
 timeInput = document.getElementById('id_due_time');
 
-let 
-dateSplit = dateInput.value.split("-"),
-timeSplit = timeInput.value.split(":"),
-inputDateTime = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2], timeSplit[0], timeSplit[1]),
-currentDateTime = new Date();
-
-// inputDateTimeUTC = Date.UTC(inputDateTime.getFullYear(), inputDateTime.getMonth(), inputDateTime.getDate(), inputDateTime.getHours(), inputDateTime.getMinutes());
-// currentDateTimeUTC = Date.UTC(currentDateTime.getFullYear(), currentDateTime.getMonth(), currentDateTime.getDate(), currentDateTime.getHours(), currentDateTime.getMinutes());
-
-
 //TODO Displaying and dismissing alerts (upon firing submit)
 addTaskButton.addEventListener('click', e => {
+    
     // alert for already present tasks
     if (presentTasks.includes(input.value.trim().toLowerCase())) {
         e.preventDefault();
         document.getElementById('duplicate-alert').hidden = false
     }
+    
+    
     // alert for due datetime error
+    let 
+    dateSplit = dateInput.value.split("-"),
+    timeSplit = timeInput.value.split(":"),
+    inputDateTime = new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2], timeSplit[0], timeSplit[1]),
+    currentDateTime = new Date();
+    // inputDateTimeUTC = Date.UTC(inputDateTime.getFullYear(), inputDateTime.getMonth(), inputDateTime.getDate(), inputDateTime.getHours(), inputDateTime.getMinutes());
+    // currentDateTimeUTC = Date.UTC(currentDateTime.getFullYear(), currentDateTime.getMonth(), currentDateTime.getDate(), currentDateTime.getHours(), currentDateTime.getMinutes());
     if (inputDateTime < currentDateTime) {
         e.preventDefault();
         document.getElementById('duedatetime-alert').hidden = false

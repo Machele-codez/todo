@@ -68,10 +68,9 @@ My Tasks
                         <!--submit button-->
                         <button data-toggle="tooltip" placement="bottom" title="Add Task" class="btn btn-success" type="submit"><i class="fas fa-plus"></i></button>
                     </div>
-                </form> 
+                </form>
                 <div class="tasks">
-                    {% for task in user.tasks.all %}
-                        {% if not task.completed %}
+                    {% for task in user.tasks.uncompleted %}
                             <p class='task' id=task_{{task.pk}}>
                                 <span class="task-priority {{task.priority}}" data-toggle="tooltip" placement="bottom" title="{{task.priority}} priority"></span>
                                 
@@ -97,10 +96,9 @@ My Tasks
                                     {% endif %}
                                 {% endif %}
                             </span>
-                        {% endif %}
                     {%empty%}
-                    <p class='display-4' style='text-align: center; color: grey'>No tasks yet</p>
-                    <p class='display-5' style='text-align: center; color: grey'>You can add tasks above</p>
+                        <p class='display-4' style='text-align: center; color: grey'>No tasks yet</p>
+                        <p class='display-5' style='text-align: center; color: grey'>You can add tasks above</p>
                     {% endfor %}
                 </div>
             </div>

@@ -8,6 +8,24 @@ from django import forms
 
 User = get_user_model()
 
+class TaskQuerySet(models.QuerySet):
+    def completed(self):
+        return self.filter(completed=True)
+
+    def uncompleted(self):
+        return self.filter(completed=False)
+
+class TasksManager(models.Manager):
+    def get_queryset(self):
+        return TaskQuerySet(self.model, using=self._db)
+    
+    def completed(self):
+        return self.get_queryset().completed()
+    
+    def uncompleted(self):
+        return self.get_queryset().uncompleted()
+    
+
 
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
@@ -15,7 +33,6 @@ class Task(models.Model):
     date_created = models.DateTimeField(auto_now=True)
     completed = models.BooleanField(default=False)
     completed_on = models.DateTimeField(blank=True, null=True)
-    # CRITICAL = 'A'; HIGH = 'B'; MODERATE = 'C'; LOW = 'D'
     PRIORITY_CHOICES = [
     ('A', 'critical'),
     ('B', 'high'),
@@ -23,10 +40,8 @@ class Task(models.Model):
     ('D', 'low'),
     ]
     priority = models.CharField(max_length=15, choices=PRIORITY_CHOICES)
-    # get a field that would be the appended value of the input date and input time to be the final due_datetime
     due_datetime = models.DateTimeField(blank=True, null=True)
-    
-
+    objects = TasksManager() # manager for this model
 
     #// def complete(self):
     #//    self.completed = True

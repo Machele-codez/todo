@@ -34,6 +34,7 @@ class Tasks(LoginRequiredMixin, generic.CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['current_time'] = datetime.datetime.now().replace(tzinfo=datetime.timezone.utc)
+        context['page_name'] = "My Tasks"
         return context
 
 #TODO: handles task removal(deletes them from database)
@@ -66,5 +67,9 @@ class CompletedTasks(LoginRequiredMixin, generic.ListView):
     template_name = 'todo_app/completed_tasks.html'
     
     def get_queryset(self):
-        queryset = Task.objects.filter(completed=True, user=self.request.user).order_by('-completed_on')
-        return queryset
+        return Task.objects.filter(completed=True, user=self.request.user).order_by('-completed_on')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_name'] = "Completed Tasks"
+        return context
