@@ -88,13 +88,13 @@ My Tasks
                             <hr class="my-0">
                             <span class="task-time">
                                 <span class="time-added" title="time added"><b><em>Added: </em></b>{{task.date_created|naturaltime}}</span>
-                                {% if task.due_datetime %}
-                                    {% if task.due_datetime > current_time %}
-                                    <span class="not-due" title="{{task.due_datetime}}"><b><em>Due: </em></b>{{task.due_datetime|naturaltime}}</span>
-                                    {% else %}
-                                    <span class="due" title="{{task.due_datetime}}"><b><em>Due: </em></b>{{task.due_datetime|naturaltime}}</span>
-                                    {% endif %}
+                                {% comment %} {% if task.due_datetime %} {% endcomment %}
+                                {% if task.due_datetime > current_time %}
+                                <span class="not-due" title="{{task.due_datetime}}"><b><em>Due: </em></b>{{task.due_datetime|naturaltime}}</span>
+                                {% else %}
+                                <span class="due" title="{{task.due_datetime}}"><b><em>Due: </em></b>{{task.due_datetime|naturaltime}}</span>
                                 {% endif %}
+                                {% comment %} {% endif %} {% endcomment %}
                             </span>
                     {%empty%}
                         <p class='display-4' style='text-align: center; color: grey'>No tasks yet</p>

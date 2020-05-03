@@ -18,7 +18,7 @@ Completed Tasks
             <p class='display-4' style='text-align:center'>Completed Tasks</p>
             <div class="content">
                 <div class="tasks mt-4">
-                    {% for task in tasks %}
+                    {% for task in user.tasks.completed %}
                         <p class='task completed mb-0 mt-3' id=task_{{task.pk}}>
                             <span class="task-text">{{task.text}}</span>
                             <span class='task-options'>

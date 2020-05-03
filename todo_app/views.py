@@ -61,13 +61,9 @@ class Complete(generic.RedirectView):
         return reverse_lazy('tasks:items')
 
 
-class CompletedTasks(LoginRequiredMixin, generic.ListView):
-    model = Task
-    context_object_name = 'tasks'
-    template_name = 'todo_app/completed_tasks.html'
+class CompletedTasks(LoginRequiredMixin, generic.TemplateView):
     
-    def get_queryset(self):
-        return Task.objects.filter(completed=True, user=self.request.user).order_by('-completed_on')
+    template_name = 'todo_app/completed_tasks.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

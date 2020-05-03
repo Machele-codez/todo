@@ -6,15 +6,16 @@ import datetime, pytz
 class TaskForm(forms.ModelForm):
     due_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     due_time = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))
+
     class Meta:
         model = Task
-        fields = ('text', 'priority') #'due_date', 'due_time', 'due_datetime')
+        fields = ('text', 'priority')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['due_date'].widget.attrs['placeholder'] = 'due date'
-        self.fields['due_time'].widget.attrs['placeholder'] = 'due time'
         self.fields['text'].widget.attrs['placeholder'] = 'Add Task Here'
+        # self.fields['due_date'].widget.attrs['placeholder'] = 'due date'
+        # self.fields['due_time'].widget.attrs['placeholder'] = 'due time'
 
     def clean(self):
         due_date = self.cleaned_data['due_date']

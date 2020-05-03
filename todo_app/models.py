@@ -43,11 +43,6 @@ class Task(models.Model):
     due_datetime = models.DateTimeField(blank=True, null=True)
     objects = TasksManager() # manager for this model
 
-    #// def complete(self):
-    #//    self.completed = True
-    #//     self.completed_on = datetime.datetime.now()
-    #//     self.save()
-
     def __str__(self):
         return f"{self.text} | {self.user}".title()
 
@@ -58,6 +53,12 @@ class Task(models.Model):
         self.text = self.text.title()
         return super().save()
 
+    #// def complete(self):
+    #//    self.completed = True
+    #//     self.completed_on = datetime.datetime.now()
+    #//     self.save()
+    
+    
     class Meta:
         ordering = ['-date_created']
         
