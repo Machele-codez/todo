@@ -6,3 +6,4 @@ db.sqlite3
 /todo_app/templates/todo_app/progress.html
 /todo_app/templates/todo_app/testchart.html
 package-lock.json 
+*.pyc

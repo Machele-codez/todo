@@ -14,8 +14,6 @@ class TaskForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['text'].widget.attrs['placeholder'] = 'Add Task Here'
-        # self.fields['due_date'].widget.attrs['placeholder'] = 'due date'
-        # self.fields['due_time'].widget.attrs['placeholder'] = 'due time'
 
     def clean(self):
         due_date = self.cleaned_data['due_date']
@@ -28,4 +26,3 @@ class TaskForm(forms.ModelForm):
             'due date and time cannot occur before current date',
             'backdating'
         )
-        # print(type(due_date), type(due_time), type(due_datetime))
