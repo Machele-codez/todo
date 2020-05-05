@@ -75,15 +75,24 @@ WSGI_APPLICATION = 'TODO.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+# Provide a default
+
+DATABASES['default'] = dj_database_url.config(default='postgres://ydejadmvrvbrwd:081dafdfb2f791e11f3a64e1c04cccad7f5680fb17491e3e16f9acf702251ce0@ec2-54-165-36-134.compute-1.amazonaws.com:5432/d6a7na8f3m9go5')
+# Parse an arbitrary Database URL
+
+DATABASES['default'] = dj_database_url.parse(
+                    'postgres://ydejadmvrvbrwd:081dafdfb2f791e11f3a64e1c04cccad7f5680fb17491e3e16f9acf702251ce0@ec2-54-165-36-134.compute-1.amazonaws.com:5432/d6a7na8f3m9go5', 
+                    conn_max_age=600
+                    )
 
 # DATABASES = {
 #     'default': {
