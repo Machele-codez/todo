@@ -82,27 +82,11 @@ DATABASES = {
     }
 }
 
-DATABASE_URL = os.environ['DATABASE_URL']
 import dj_database_url
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-# Provide a default
 
-DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
-# Parse an arbitrary Database URL
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
-DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-#         'NAME': 'your_heroku_db_name',                     
-#         'USER': 'your_heroku_db_user_name',
-#         'PASSWORD': 'your_heroku_password',
-#         # Or something like this
-#         'HOST': 'ec2-54-165-36-134.compute-1.amazonaws.com',
-#         'PORT': '5432',                     
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
