@@ -1,7 +1,9 @@
 //|~~~~~~~~~~~~~~~~~~~~~~~STYLING~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
 //? placeholder for `set priority`
-document.querySelector('option[selected]').innerHTML = 'set priority';
+document.querySelector('select#id_priority').firstElementChild.innerHTML = 'set priority';
+document.querySelector('select#id_priority').firstElementChild.disabled = true;
+document.querySelector('select#id_priority').firstElementChild.style.color = 'gray';
 
 //? left edge colour based on task priority 
 document.querySelectorAll('.A').forEach(elem => {
@@ -41,6 +43,7 @@ input.addEventListener('keyup', () => {
     duplicateError.hidden = false
     addTaskButton.style.height = h; //? maintain add task button's height when error message is added below input
 
+    
     if (presentTasks.includes(input.value.trim().toLowerCase())) {
         duplicateError.classList.remove('alright');
         duplicateError.classList.add('already-present');
@@ -50,9 +53,17 @@ input.addEventListener('keyup', () => {
         duplicateError.classList.add('alright');
         duplicateError.innerHTML = 'Can be added';
     }
-    if (input.value.trim() == ""){
-        duplicateError.hidden = true;
+
+    if (input.value.trim() === ""){
+        duplicateError.hidden = false;
+        duplicateError.classList.remove('alright');
+        duplicateError.classList.add('already-present');
+        duplicateError.innerHTML = 'Task text cannot be empty';
+        
+    }else{
+        document.getElementById('empty-task-alert').hidden = true;
     }
+
 });
 
 input.addEventListener('blur', () => {
@@ -72,10 +83,16 @@ timeInput = document.getElementById('id_due_time');
 //TODO Displaying and dismissing alerts (upon firing submit)
 addTaskButton.addEventListener('click', e => {
     
+    // alert for empty task text submission
+    if (input.value.trim() === ""){
+        e.preventDefault();
+        document.getElementById('empty-task-alert').hidden = false;
+    }
+
     // alert for already present tasks
     if (presentTasks.includes(input.value.trim().toLowerCase())) {
         e.preventDefault();
-        document.getElementById('duplicate-alert').hidden = false
+        document.getElementById('duplicate-alert').hidden = false;
     }
     
     
@@ -103,6 +120,9 @@ document.getElementById('duplicate-alert-dismiss').addEventListener('click', () 
 // dismiss alert for due datetime error
 document.getElementById('duedatetime-alert-dismiss').addEventListener('click', () =>{
     document.getElementById('duedatetime-alert').hidden = true;    
+})
+document.getElementById('empty-task-alert-dismiss').addEventListener('click', () =>{
+    document.getElementById('empty-task-alert').hidden = true;    
 })
 
 

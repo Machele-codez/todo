@@ -10,6 +10,7 @@ My Tasks
 {% block head %}
     <link rel="stylesheet" href="{% static 'todo_app/css/todo.css' %}">    
     <script src="{% static 'todo_app/js/todo.js' %}" defer></script>
+    <script>$(".alert").alert('close')</script>
 {% endblock  %}
 
 {% block body %}
@@ -23,15 +24,21 @@ My Tasks
                     <!--ALERTS-->
                     <div id='duplicate-alert' class="alert alert-warning alert-dismissible fade show" hidden>
                         <button type="button" class="close">
-                        <span id='duplicate-alert-dismiss'>&times;</span>
+                            <span id='duplicate-alert-dismiss'>&times;</span>
                         </button>
                         <strong>Task Already Present</strong> 
                     </div>
                     <div id='duedatetime-alert' class="alert alert-warning alert-dismissible fade show" hidden>
                         <button type="button" class="close">
-                        <span id='duedatetime-alert-dismiss'>&times;</span>
+                            <span id='duedatetime-alert-dismiss'>&times;</span>
                         </button>
                         <strong>Due date and time cannot occur before current date and time</strong> 
+                    </div>
+                    <div id='empty-task-alert' class="alert alert-warning alert-dismissible fade show" hidden>
+                        <button type="button" class="close">
+                            <span id='empty-task-alert-dismiss'>&times;</span>
+                        </button>
+                        <strong>Task text cannot be empty</strong> 
                     </div>
                     {% if form.errors %}
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -42,10 +49,6 @@ My Tasks
                             {{form.errors}}
                           </strong> 
                         </div>
-                        
-                        <script>
-                          $(".alert").alert();
-                        </script>
                     {% endif %}
                     <!--FORM INPUTS-->
                     <div class="ins mt-4">

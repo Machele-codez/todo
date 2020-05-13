@@ -84,6 +84,10 @@ button{
     text-align: end;   
 }
 
+.alert-dismissible .close{
+    height: auto;
+}
+
 .alright{
     font-weight: bold;
     color: green;
