@@ -84,8 +84,8 @@ DATABASES = {
 
 import dj_database_url
 
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+db_from_env = dj_database_url.config() #? gets the database from the environment. 
+DATABASES['default'].update(db_from_env) #? updates the DATABASE dict to use the db from the env.
 
 
 # Password validation

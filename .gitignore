@@ -1,9 +1,10 @@
 db.sqlite3
 /static/bs4/
 /static/faw/
-/todo_app/migrations/
 /node_modules/
 /todo_app/templates/todo_app/progress.html
 /todo_app/templates/todo_app/testchart.html
-package-lock.json 
-*.pyc
+package-lock.json
+# ! makemigrations should be run locally and then puhed to heroku 
+# /todo_app/migrations/
+# *.pyc 
