@@ -23,14 +23,27 @@ form{
     flex-grow: .8;
 }
 
-.form-fields{
-    display:flex;
-    justify-content: space-between;
+/* .form-fields{
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
     align-items: flex-end;
+    column-gap: 1rem;
 }
 
 .form-fields .task-text-input-span{
-    flex-grow: .8;
+    grid-column: 1/6;
+}
+
+.form-fields span:nth-child(2){
+    grid-column: 6/8;
+}
+
+.form-fields span:nth-child(3){
+    grid-column: 8/10;
+} */
+
+.form-fields span:nth-child(4){
+    grid-column: 10/-1;
 }
 
 .alert{
@@ -51,7 +64,6 @@ input{
     border: none;
     border-bottom: 3px inset gray;
     padding-left: .25rem;
-    flex-grow: .8;
     width: 100%;
     z-index: 0;
 }
@@ -60,11 +72,6 @@ select{
     border: none;
     border-bottom: 3px inset gray;
     padding-left: .25rem;
-    flex-grow: .15;
-}
-
-input[type="time"], input[type="date"] {
-    flex-grow: 0;
 }
 
 .form-fields-divider{

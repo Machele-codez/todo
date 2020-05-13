@@ -54,17 +54,11 @@ My Tasks
                     <div class="ins mt-4">
                         <!--input fields-->
                         <div class="field-div">
-                            <span class='form-fields'>
-                                <span class="task-text-input-span">{{form.text}}</span>
-                                <span class='form-fields-divider'></span>
-                                <span>{{form.priority}}</span>
-                                <span class='form-fields-divider'></span>
-                                {% comment %} {{form.due_date.label_tag}} {% endcomment %}
-                                <span>{{form.due_date}}</span>
-                                <span class='form-fields-divider'></span>
-                                {% comment %} {{form.due_time.label_tag}} {% endcomment %}
-                                <span>{{form.due_time}}</span>
-                                <span class='form-fields-divider'></span>
+                            <span class='form-fields row'>
+                                <span class="task-text-input-span col-sm-5">{{form.text}}</span>
+                                <span class='col-sm-2'>{{form.priority}}</span>
+                                <span class='col-sm-3'>{{form.due_date}}</span>
+                                <span class='col-sm-2'>{{form.due_time}}</span>
                             </span>
                             <p class="duplicate-error-msg"></p>
                         </div>
