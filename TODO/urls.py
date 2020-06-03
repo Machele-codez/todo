@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-from todo_app.views import *
+from apps.tasks.views import *
 from django.contrib.auth.views import LoginView
-from accounts.forms import LoginForm
+from apps.accounts.forms import LoginForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,7 +31,7 @@ urlpatterns = [
         ),
         name = 'login'
     ),
-    path('tasks/', include('todo_app.urls', namespace='tasks')),
-    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('tasks/', include('apps.tasks.urls', namespace='tasks')),
+    path('accounts/', include('apps.accounts.urls', namespace='accounts')),
     
 ]
