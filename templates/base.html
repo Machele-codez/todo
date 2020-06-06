@@ -8,19 +8,19 @@
     <title>My Todo App | {% block title %}{% endblock %}</title>
     
     <!--BOOTSTRAP-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    {% comment %} <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    {% comment %} <link rel="stylesheet" href="{% static 'bs4/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'bs4/css/bootstrap.min.css' %}">
     <script src="{% static 'bs4/jquery.js' %}"></script>
     <script src="{% static 'bs4/popper.js' %}"></script>
-    <script src="{% static 'bs4/js/bootstrap.min.js' %}"></script> {% endcomment %}
+    <script src="{% static 'bs4/js/bootstrap.min.js' %}"></script>
 
     <!--FONT AWESOME-->
     <script src="https://kit.fontawesome.com/546832c0ab.js" crossorigin="anonymous"></script>
-    {% comment %} <link rel="stylesheet" href="{% static 'faw/css/all.min.css' %}">
-    <script src="{% static 'faw/js/all.min.js' %}"></script> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'faw/css/all.min.css' %}">
+    <script src="{% static 'faw/js/all.min.js' %}"></script>
 
 
     <link rel="stylesheet" href="{% static 'master.css' %}">
@@ -38,8 +38,8 @@
         {% if user.is_authenticated %}
         <div class="nav-contents">
             <div class='nav-pages'>
-                <a href="{% url 'tasks:items' %}" class='nav-button'>My Tasks</a>
-                <a href="{% url 'tasks:completed' %}" class='nav-button'>Completed</a>
+                {% comment %} <a href="{% url 'tasks:all_tasks' %}" class='nav-button'>My Tasks</a> {% endcomment %}
+                {% comment %} <a href="{% url 'tasks:completed' %}" class='nav-button'>Completed</a> {% endcomment %}
                 {% comment %} <a href="#" class='nav-button'>Progress</a> {% endcomment %}
             </div>
             <div class="nav-user-actions">
@@ -59,6 +59,9 @@
     </div>
 
     <script src="{% static 'master.js' %}"></script>
+    <script src="{% static 'jquery-3.5.1.min.js' %}"></script>
+    
+    {% block javascript %}{% endblock javascript %}
 
 </body>
 
