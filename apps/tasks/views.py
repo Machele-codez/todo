@@ -11,7 +11,7 @@ from django.http import JsonResponse
 class TasksView(LoginRequiredMixin, generic.CreateView):
     model = Task  
     template_name = 'tasks/task_list.html'
-    success_url = reverse_lazy('tasks:items')
+    success_url = reverse_lazy('tasks:all_tasks')
     form_class = TaskForm
 
     def form_valid(self, form):

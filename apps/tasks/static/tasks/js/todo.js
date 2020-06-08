@@ -5,20 +5,6 @@ document.querySelector('select#id_priority').firstElementChild.innerHTML = 'set 
 document.querySelector('select#id_priority').firstElementChild.disabled = true;
 document.querySelector('select#id_priority').firstElementChild.style.color = 'gray';
 
-//? left edge colour based on task priority 
-// document.querySelectorAll('.A').forEach(elem => {
-//     elem.style.borderColor = 'red'
-// });
-// document.querySelectorAll('.B').forEach(elem => {
-//     elem.style.borderColor = 'orange'
-// });
-// document.querySelectorAll('.C').forEach(elem => {
-//     elem.style.borderColor = '#ffef00'
-// });
-// document.querySelectorAll('.D').forEach(elem => {
-//     elem.style.borderColor = 'gray'
-// });
-
 
 // | FORM ERRORS
 
@@ -126,7 +112,9 @@ document.getElementById('empty-task-alert-dismiss').addEventListener('click', ()
 })
 
 
-
+function displayFormModal() {
+  document.getElementById('form-modal').classList.toggle('active')
+}
 
 
 

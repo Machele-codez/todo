@@ -19,7 +19,7 @@ My Tasks
         <div class="col-sm-10">
             <!--<p class='display-3' style='text-align:center'>Tasks</p>-->
             <div class="content">
-                <form method="post">
+                <form style='display:none' id='form' method="post">
                     {% csrf_token %}
                     <!--ALERTS-->
                     <div id='duplicate-alert' class="alert alert-warning alert-dismissible fade show" hidden>
@@ -66,6 +66,21 @@ My Tasks
                         <button data-toggle="tooltip" placement="bottom" title="Add Task" class="btn btn-success" type="submit"><i class="fas fa-plus"></i></button>
                     </div>
                 </form>
+                <button class="add-bt" onclick='displayFormModal()'>Add Task</button>
+                <div class="form-modal" id='form-modal'>
+                  <div class="overlay"></div>
+                  <div class="task-form">
+                    <p class='form-title'>Add New Task</p>
+                    <span id='close-form-btn' onclick='displayFormModal()'>&times;</span>
+                    <form method="post">
+                      {% for field in form %}
+                      <p class='field-label'>{{field.label}}</p>
+                      <p class='field-input'>{{field}}</p>
+                      {% endfor %}
+                      <button type="submit">Add Task</button>
+                    </form>
+                  </div>
+                </div>
                 <div class="tasks">
                     {% for task in user.tasks.all %}
                         <div id=task_{{task.pk}}>

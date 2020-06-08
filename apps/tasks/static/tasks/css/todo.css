@@ -5,18 +5,26 @@
     margin: 4rem auto;
 }
 
-/*| FORM STYLES */
-form{
-    display: flex;
+.add-btn{
+  border: none; 
+  background: none;
+  border: 2px solid black;
+  border-radius: .6;
+}
+
+/*
+/*| FORM STYLES *
+#form{
+    /*display: flex;*
     flex-direction: column;
     justify-content: space-evenly;
-    
+    display:none;
 }
 
 .ins{
     display: flex;
     justify-content: space-evenly;
-    /* background: red; */
+    /* background: red; *
 }
 
 .field-div{
@@ -44,7 +52,7 @@ form{
 
 .form-fields span:nth-child(4){
     grid-column: 10/-1;
-} */
+} *
 
 .form-fields{
     align-items: flex-end;
@@ -81,7 +89,7 @@ select{
 .form-fields-divider{
     display: inline-block;
     width: .5rem;
-    /* background-color: black; */
+    /* background-color: black; *
 }
 
 button{
@@ -108,7 +116,99 @@ button{
     font-weight: bold;
     color: red;
 }
-/*| END OF FORM STYLES */
+/*| END OF FORM STYLES *
+*/
+
+/*| START OF MODAL FORM STYLES */
+
+.form-modal{
+  transform: scale(0);
+  background: rgba(0,0,0,0.3);
+}
+
+.form-modal .overlay{
+}
+
+.form-modal .task-form{
+  position: absolute;
+  top: 25%;
+  left:5%;
+  right:5%;
+  width: 90%;
+  background: #ffffff;
+  transform: scale(0);
+  padding: .5rem;
+  border-radius: 5%;
+  transition: all .25s ease-in-out;
+}
+
+#close-form-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: .2rem;
+  right: .5rem;
+  font-size: 1.5rem;
+  background: black;
+  height: 2rem;
+  width: 2rem;
+  padding: .3rem;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+}
+
+.form-modal.active{
+  transform: scale(1);
+}
+
+.form-modal.active{
+  display: block;
+  position:fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width:100vw;
+}
+
+.form-modal.active .task-form{
+  transform: scale(1);
+}
+
+.form-title{
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.field-label{
+  margin: 0;
+}
+
+input, select{
+  background: none;
+  border: 1px solid grey;
+  border-radius: .3rem;
+  padding: .25rem .3rem;
+  width: 100%;
+}
+
+input:focus, select:focus{
+  border: 1px solid black;
+  border-left-width: 3px;
+}
+
+.form-modal button{
+  background: none;
+  border: none;
+  border: 2px solid black; 
+  border-radius: .6rem;
+  width: 100%;
+}
+
+
+/*| END OF MODAL FORM STYLES */
+
 
 /*| TASKS */
 .tasks{
