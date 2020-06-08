@@ -19,53 +19,58 @@ My Tasks
         <div class="col-sm-10">
             <!--<p class='display-3' style='text-align:center'>Tasks</p>-->
             <div class="content">
-                <form method="post">
-                    {% csrf_token %}
-                    <!--ALERTS-->
-                    <div id='duplicate-alert' class="alert alert-warning alert-dismissible fade show" hidden>
-                        <button type="button" class="close">
-                            <span id='duplicate-alert-dismiss'>&times;</span>
-                        </button>
-                        <strong>Task Already Present</strong> 
-                    </div>
-                    <div id='duedatetime-alert' class="alert alert-warning alert-dismissible fade show" hidden>
-                        <button type="button" class="close">
-                            <span id='duedatetime-alert-dismiss'>&times;</span>
-                        </button>
-                        <strong>Due date and time cannot occur before current date and time</strong> 
-                    </div>
-                    <div id='empty-task-alert' class="alert alert-warning alert-dismissible fade show" hidden>
-                        <button type="button" class="close">
-                            <span id='empty-task-alert-dismiss'>&times;</span>
-                        </button>
-                        <strong>Task text cannot be empty</strong> 
-                    </div>
-                    {% if form.errors %}
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <strong>
-                            {{form.errors}}
-                          </strong> 
+                <div id='add-task-pane'>
+                    <button id="form-switch" onclick="toggleForm()"></button>
+                    <form id="task-form" method="post">
+                        {% csrf_token %}
+                        <!--ALERTS-->
+                        <div id='duplicate-alert' class="alert alert-warning alert-dismissible fade show" hidden>
+                            <button type="button" class="close">
+                                <span id='duplicate-alert-dismiss'>&times;</span>
+                            </button>
+                            <strong>Task Already Present</strong> 
                         </div>
-                    {% endif %}
-                    <!--FORM INPUTS-->
-                    <div class="ins mt-4">
-                        <!--input fields-->
-                        <div class="field-div">
-                            <span class='form-fields row'>
-                                <span class="task-text-input-span col-sm-5">{{form.text}}</span>
-                                <span class='col-sm-2'>{{form.priority}}</span>
-                                <span class='col-sm-3'>{{form.due_date}}</span>
-                                <span class='col-sm-2'>{{form.due_time}}</span>
-                            </span>
-                            <p class="duplicate-error-msg"></p>
+                        <div id='duedatetime-alert' class="alert alert-warning alert-dismissible fade show" hidden>
+                            <button type="button" class="close">
+                                <span id='duedatetime-alert-dismiss'>&times;</span>
+                            </button>
+                            <strong>Due date and time cannot occur before current date and time</strong> 
                         </div>
-                        <!--submit button-->
-                        <button data-toggle="tooltip" placement="bottom" title="Add Task" class="btn btn-success" type="submit"><i class="fas fa-plus"></i></button>
-                    </div>
-                </form>
+                        <div id='empty-task-alert' class="alert alert-warning alert-dismissible fade show" hidden>
+                            <button type="button" class="close">
+                                <span id='empty-task-alert-dismiss'>&times;</span>
+                            </button>
+                            <strong>Task text cannot be empty</strong> 
+                        </div>
+                        {% if form.errors %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>
+                                {{form.errors}}
+                            </strong> 
+                            </div>
+                        {% endif %}
+                        <!--FORM INPUTS-->
+                        <div class="ins mt-4">
+                            <!--input fields-->
+                            <div class="field-div">
+                                <span class='form-fields row'>
+                                    <span class="task-text-input-span col-sm-5">{{form.text}}</span>
+                                    <span class='col-sm-2'>{{form.priority}}</span>
+                                    <span class='col-sm-3'>{{form.due_date}}</span>
+                                    <span class='col-sm-2'>{{form.due_time}}</span>
+                                </span>
+                                <p class="duplicate-error-msg"></p>
+                            </div>
+                            <!--submit button-->
+                            <button data-toggle="tooltip" placement="bottom" title="Add Task" class="btn btn-success" type="submit"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                
                 <div class="tasks">
                     {% for task in user.tasks.all %}
                         <div id=task_{{task.pk}}>
@@ -121,6 +126,7 @@ My Tasks
                         <p class='display-5' style='text-align: center; color: grey'>You can add tasks above</p>
                     {% endfor %}
                 </div>
+            
             </div>
         </div>
     </div>

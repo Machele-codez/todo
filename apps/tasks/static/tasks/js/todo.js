@@ -5,21 +5,6 @@ document.querySelector('select#id_priority').firstElementChild.innerHTML = 'set 
 document.querySelector('select#id_priority').firstElementChild.disabled = true;
 document.querySelector('select#id_priority').firstElementChild.style.color = 'gray';
 
-//? left edge colour based on task priority 
-// document.querySelectorAll('.A').forEach(elem => {
-//     elem.style.borderColor = 'red'
-// });
-// document.querySelectorAll('.B').forEach(elem => {
-//     elem.style.borderColor = 'orange'
-// });
-// document.querySelectorAll('.C').forEach(elem => {
-//     elem.style.borderColor = '#ffef00'
-// });
-// document.querySelectorAll('.D').forEach(elem => {
-//     elem.style.borderColor = 'gray'
-// });
-
-
 // | FORM ERRORS
 
 // TODO handling task text errors
@@ -125,7 +110,9 @@ document.getElementById('empty-task-alert-dismiss').addEventListener('click', ()
     document.getElementById('empty-task-alert').hidden = true;    
 })
 
-
+function toggleForm(){
+    document.getElementById('add-task-pane').classList.toggle("form-active");
+}
 
 
 
